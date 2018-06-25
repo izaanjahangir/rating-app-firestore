@@ -1,5 +1,6 @@
 let loaderEl = document.querySelector(".loader");
 let skillList = document.querySelector(".skill-list");
+let skillCategories= [];
 document.addEventListener("DOMContentLoaded", () => {
   loaderEl.style.display = "block";
   console.log("DOM loaded");
@@ -31,6 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log(data.data());
       loaderEl.style.display = "none";
       data.data().services.forEach(data => {
+        skillCategories.push(data.name);
         skillList.innerHTML += `
                 <li class="list-group-item skill-item">
                     <span class="left-content">${data.name}</span>

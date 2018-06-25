@@ -44,6 +44,7 @@
 }
 .btn-custom-dark:hover {
   background: var(--bg-light-red);
+  color: white;
 }
 .skill-item {
   display: flex;
