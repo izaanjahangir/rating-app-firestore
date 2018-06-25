@@ -1,0 +1,13 @@
+A place where users can post their skills, other users will rate his/her skills...
+Features:
+1) Login / Signup via Firebase
+2) There should be a list of skill categories that are already added in database by some one. Like, if I and you added 'PWA' as a skill, so right after login, user should see one of the category name PWA with a text '2 Persons'...
+3) On clicking a category, there must come all the users of this category skill with their average rating stars.
+4) On clicking any user, there must come all the users who provided RATINGS to him with their provided Stars.
+5) User can also rate any one's skill except HIMSELF by clicking on + button (place it any where on this screen), there should be a popup for the stars, like HOW MANY STARS YOU WANT TO RATE?.
+6) Implement PWA with a beautiful Responsive design...
+
+Firestore structure should be like the picture attached 'rating-app.jpg'
+
+You can continue my code if you're feeling any difficulty, but don't forget to add your project configurations and remove my one.!!! ;)
+https://github.com/kashifsulaiman/SMIT-Batch-5/tree/master/firebase%203

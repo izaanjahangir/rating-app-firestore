@@ -1,0 +1,57 @@
+:root{
+    --bg-light-red : #ff7979;
+    --bg-dark-red: #ee5253;
+}
+
+.navbar-custom{
+    background: var(--bg-light-red);
+    color: white;
+}
+.navbar-custom .navbar-brand{
+    color: white;
+}
+
+.loader{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 100%;
+    text-align: center;
+    display: none;
+}
+.loader div{
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 1.1em;
+}
+.loader img{
+    width: 50px;
+    animation: loader 500ms linear infinite;
+}
+@keyframes loader{
+    from{
+        transform: rotate(0);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+#main-container{
+    width: 80%;
+    margin: 0 auto;
+}
+.form-title{
+    background: var(--bg-dark-red);
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-align: center;
+    color: white;
+}
+.btn-custom-dark{
+    background: var(--bg-dark-red);   
+    color: white; 
+}
+.btn-custom-dark:hover{
+    background: var(--bg-light-red);
+}
+

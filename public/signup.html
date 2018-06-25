@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Rating App| Signup</title>
+
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
+        crossorigin="anonymous">
+
+
+    <!-- Bootstrap Minfied CSS -->
+    <link rel="stylesheet" href="../src/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../src/css/style.css">
+
+    <!-- Firebase libraries -->
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase.js"></script>
+
+    <!-- Firebase App initialzation -->
+    <script src="../src/js/firebase-init.js"></script>
+
+
+</head>
+
+<body>
+    <nav class="navbar navbar-custom">
+        <a href="index.html" class="navbar-brand">Rating App</a>
+    </nav>
+
+
+    <div id="main-container">
+        <div class="container my-3">
+            <form id="form">
+                <h2 class="form-title">Sign up</h2>
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" class="form-control" id="username" placeholder="Enter your first name...">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter your email...">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" class="form-control" id="password" placeholder="Enter your password...">
+                </div>
+                <div class="form-group">
+                    <label for="password2">Confirm password:</label>
+                    <input type="password" class="form-control" id="password2" placeholder="Confirm your password...">
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-custom-dark" value="Create Account">
+                    <div>Have a account? <a href="signin.html">Signin here...</a></div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="loader">
+        <img src="../src/images/loader.png" alt="loader">
+        <div></div>
+    </div>
+    <script src="../src/js/signup.js"></script>
+</body>
+
+</html>
