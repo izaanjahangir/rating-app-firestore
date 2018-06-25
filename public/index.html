@@ -33,22 +33,28 @@
 <body>
     <nav class="navbar navbar-custom">
         <a href="index.html" class="navbar-brand">Rating App</a>
+        <button class="btn btn-danger" onClick="logout()">Logout</button>
     </nav>
 
 
     <div id="main-container">
         <div class="container my-3 text-center">
-            <h1>Skill Categories</h1>
+            <form class="text-left" id="skill-form">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="user-skill" placeholder="Enter your skill...">
+                    <input type="submit" class="btn btn-custom-dark" value="Add">
+                </div>
+            </form>
+            <h1 class="my-3">Skill Categories</h1>
             <ul class="list-group skill-list text-left">
                 <!-- <li class="list-group-item skill-item">
-                    <span class="left-content">HTML</span>
+                    <span class="left-content">ha</span>
                     <span class="right-content">
-                        <span class="badge badge-dark">3</span>
-                        <i class="fas fa-angle-right small-icon"></i>
+                        <span class="badge badge-secondary">3</span>
+                        <i class="fas fa-angle-right"></i>
                     </span>
                 </li> -->
             </ul>
-            <a href="skill-add.html" class="btn btn-custom-dark my-3">Add your Skills</a>
         </div>
     </div>
     <div class="loader">

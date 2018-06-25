@@ -6,6 +6,7 @@ let password2El = document.getElementById("password2");
 let loaderEl = document.querySelector('.loader');
 let loaderText = loaderEl.querySelector('div');
 let errorEl = document.querySelector('.error');
+
 form.addEventListener("submit", e => {
   e.preventDefault();
 
