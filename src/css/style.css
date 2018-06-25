@@ -1,63 +1,105 @@
-:root{
-    --bg-light-red : #ff7979;
-    --bg-dark-red: #ee5253;
+/*************** Default Styling *********************/
+:root {
+  --bg-light-red: #ff7979;
+  --bg-dark-red: #ee5253;
+}
+.small-icon {
+  font-size: 1.2em;
+}
+.error {
+  color: red;
+  text-align: center;
+  font-size: 1.1em;
 }
 
-.navbar-custom{
-    background: var(--bg-light-red);
-    color: white;
-}
-.navbar-custom .navbar-brand{
-    color: white;
-}
+/*********************************************************/
 
-.loader{
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
+/******************* Navbar ************************/
+
+.navbar-custom {
+  background: var(--bg-light-red);
+  color: white;
+}
+.navbar-custom .navbar-brand {
+  color: white;
+}
+/*********************************************************/
+
+/***************** Main Container *************************/
+
+#main-container {
+  width: 80%;
+  margin: 0 auto;
+}
+.form-title {
+  background: var(--bg-dark-red);
+  padding: 10px 20px;
+  border-radius: 20px;
+  text-align: center;
+  color: white;
+}
+.btn-custom-dark {
+  background: var(--bg-dark-red);
+  color: white;
+}
+.btn-custom-dark:hover {
+  background: var(--bg-light-red);
+}
+.skill-item {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.left-content {
+  flex: 1;
+}
+.right-content {
+  display: flex;
+  align-items: center;
+}
+.right-content span {
+  margin: 0 5px;
+}
+/*********************************************************/
+
+/***************** Loader *************************/
+
+.loader {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  text-align: center;
+  display: none;
+}
+.loader div {
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 1.1em;
+}
+.loader img {
+  width: 50px;
+  animation: loader 500ms linear infinite;
+}
+/*********************************************************/
+
+/********************* Keyframes *************************/
+@keyframes loader {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+/*********************************************************/
+
+/*******For Small device with width 767 or less********/
+
+@media (max-width: 767px) {
+  #main-container {
     width: 100%;
-    text-align: center;
-    display: none;
-}
-.loader div{
-    color: rgba(0, 0, 0, 0.7);
-    font-size: 1.1em;
-}
-.loader img{
-    width: 50px;
-    animation: loader 500ms linear infinite;
+  }
 }
 
-.error{
-    color: red;
-    text-align: center;
-    font-size: 1.1em;
-}
-@keyframes loader{
-    from{
-        transform: rotate(0);
-    }
-    to{
-        transform: rotate(360deg);
-    }
-}
-#main-container{
-    width: 80%;
-    margin: 0 auto;
-}
-.form-title{
-    background: var(--bg-dark-red);
-    padding: 10px 20px;
-    border-radius: 20px;
-    text-align: center;
-    color: white;
-}
-.btn-custom-dark{
-    background: var(--bg-dark-red);   
-    color: white; 
-}
-.btn-custom-dark:hover{
-    background: var(--bg-light-red);
-}
-
+/*********************************************************/

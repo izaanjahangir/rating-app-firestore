@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Rating App| Home</title>
+
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
+        crossorigin="anonymous">
+
+
+    <!-- Bootstrap Minfied CSS -->
+    <link rel="stylesheet" href="../src/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../src/css/style.css">
+
+    <!-- Firebase libraries -->
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase.js"></script>
+
+    <!-- Firebase App initialzation -->
+    <script src="../src/js/firebase-init.js"></script>
+
+
+</head>
+
+<body>
+    <nav class="navbar navbar-custom">
+        <a href="index.html" class="navbar-brand">Rating App</a>
+    </nav>
+
+
+    <div id="main-container">
+        <div class="container my-3">
+            <h1 class="text-center">Skill Categories</h1>
+            <ul class="list-group skill-list">
+                <li class="list-group-item skill-item">
+                    <span class="left-content">HTML</span>
+                    <span class="right-content">
+                        <span class="badge badge-dark">3</span>
+                        <i class="fas fa-angle-right small-icon"></i>
+                    </span>
+                </li>
+                <li class="list-group-item skill-item">
+                    <span class="left-content">HTML</span>
+                    <span class="right-content">
+                        <span class="badge badge-dark">3</span>
+                        <i class="fas fa-angle-right small-icon"></i>
+                    </span>
+                </li>
+                <li class="list-group-item skill-item">
+                    <span class="left-content">HTML</span>
+                    <span class="right-content">
+                        <span class="badge badge-dark">3</span>
+                        <i class="fas fa-angle-right small-icon"></i>
+                    </span>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+    <div class="loader">
+        <img src="../src/images/loader.png" alt="loader">
+        <div></div>
+    </div>
+    <script src="../src/js/main.js"></script>
+</body>
+
+</html>
