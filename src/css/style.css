@@ -28,6 +28,12 @@
     width: 50px;
     animation: loader 500ms linear infinite;
 }
+
+.error{
+    color: red;
+    text-align: center;
+    font-size: 1.1em;
+}
 @keyframes loader{
     from{
         transform: rotate(0);
