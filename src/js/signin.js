@@ -1,8 +1,6 @@
 let form = document.getElementById("form");
 let emailEl = document.getElementById("email");
 let passwordEl = document.getElementById("password");
-let loaderEl = document.querySelector('.loader');
-let loaderText = loaderEl.querySelector('div');
 let errorEl = document.querySelector('.error');
 form.addEventListener("submit", e => {
   e.preventDefault();

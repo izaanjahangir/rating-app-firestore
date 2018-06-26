@@ -2,7 +2,6 @@
 
 
 // DOM Shortcuts
-let loaderEl = document.querySelector(".loader");
 let skillList = document.querySelector(".skill-list");
 let skillCategories = [];
 let yourSkills = [];
@@ -81,7 +80,7 @@ function renderSkillCategories(change) {
     skillCategories.push(skillData.skill);
 
     skillList.innerHTML += `
-        <li class="list-group-item skill-item ${skillData.skill}">
+        <li class="list-group-item skill-item ${skillData.skill}" onClick="routeToSkills('${skillData.skill}')">
           <span class="left-content">${skillData.skill}</span>
           <span class="right-content">
               <span class="badge badge-secondary">${
@@ -161,17 +160,10 @@ function checkSkillList(userSkill){
 
 }
 
-
-// Hide the loader from DOM
-function hideLoader(){
-  loaderEl.style.display = "none";
+function routeToSkills(skill){
+    window.localStorage.setItem('skillName',skill);
+    window.location.assign('public/skills.html');
 }
-
-// Show the loader on DOM
-function showLoader(){
-  loaderEl.style.display = "block";
-}
-
 
 // Show Modal on DOM with transition
 function showModal(text){
