@@ -33,6 +33,7 @@ skillForm.addEventListener("submit", e => {
   e.preventDefault();
   showLoader()
   let userSkill = userSkillEl.value;
+  userSkill = capitilize(userSkill);
   userSkillEl.value = "";
   if(!isNaN( userSkill.slice(0,1) ) ){
     showModal("Your skill is invalid!");
@@ -117,8 +118,8 @@ function renderSkillCategories(change) {
 function checkUserSkill(userSkill){
   let isFound = false;
   for(let i=0; i<yourSkills.length; i++){
-    if (yourSkills[i].toLowerCase() === userSkill.toLowerCase()) {
-      let skill = yourSkills[i].toLowerCase();
+    if (yourSkills[i] === userSkill) {
+      let skill = yourSkills[i];
       isFound = true;
       console.log("Found");
       hideLoader();
@@ -146,8 +147,8 @@ function checkUserSkill(userSkill){
 function checkSkillList(userSkill){
   let isFound = false;
   for (let i = 0; i < skillCategories.length; i++) {
-    if (skillCategories[i].toLowerCase() === userSkill.toLowerCase()) {
-      let skill = skillCategories[i].toLowerCase();
+    if (skillCategories[i] === userSkill) {
+      let skill = skillCategories[i];
       isFound = true;
       db.collection("servicesName")
         .doc(skill)
@@ -156,7 +157,7 @@ function checkSkillList(userSkill){
           console.log(skill);
           
           db.collection("servicesName")
-            .doc(skill)
+            .doc(userSkill)
             .update({ users: data.data().users + 1 });
         });
       break;
@@ -173,4 +174,10 @@ function checkSkillList(userSkill){
 function routeToSkills(skill){
     window.localStorage.setItem('skillName',skill);
     window.location.assign('public/skills.html');
+}
+
+function capitilize(string){
+  let firstPart = string.slice(0,1).toUpperCase();
+  let lastPart = string.slice(1).toLowerCase();
+  return firstPart+lastPart;
 }

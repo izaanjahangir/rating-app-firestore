@@ -45,15 +45,14 @@ function renderAllSkills(data) {
                 </span>
             </li>
         `;
-  }
-
-  let starsInnerEl = skillEl.querySelector(`#a${skillKey} .stars-inner`);
-  starsInnerEl.style.width = (skillData.avRating / 5) * 100 + "%";
+      }
+      
+    let starsInnerEl = skillEl.querySelector(`#a${skillKey} .stars-inner`);
+    starsInnerEl.style.width = (skillData.avRating / 5) * 100 + "%";
 }
 
 function selectSkill(el) {
-  let listArr = skillEl.querySelectorAll("li");
-  listArr.forEach(skill => (skill.style.background = "none"));
+  removeSelection();
   el.style.background = "#dcdde1";
   selectedId = el.id;
 }
@@ -68,13 +67,12 @@ function addRating() {
     return false;
   }
   showLoader();
-  let userRate = parseInt(userRateEl.value);
-
+  let userRate = parseFloat(userRateEl.value);
+  selectedId = selectedId.slice(1);
   console.log(selectedId);
-  if(!flag){
-    selectedId = selectedId.slice(1);
-  }
-  flag = true;
+  console.log(selectedId.search('izaan'));
+  
+  
   db.collection("services")
     .doc(selectedId)
     .get()
@@ -90,6 +88,7 @@ function checkRatings(snapshot, userRate) {
   let ratings = snapshot.ratings;
   if (userUid === createdUserUid) {
     showModal("You can't rate yourself");
+    removeSelection();
     hideLoader();
     return false;
   }
@@ -99,6 +98,7 @@ function checkRatings(snapshot, userRate) {
     if (value.uid == userUid) {
       isRated = true;
       showModal("You have already rated this!");
+      removeSelection();
       hideLoader();
     }
   });
@@ -124,5 +124,12 @@ function calcAvg(snapshot,ratings) {
       .update({ ratings,avRating:avg })
       .then(() => {
         hideLoader();
+        removeSelection(); 
       });
+}
+
+function removeSelection(){
+  let listArr = skillEl.querySelectorAll("li");
+  listArr.forEach(skill => (skill.style.background = "none"));
+  selectedId = undefined;
 }
