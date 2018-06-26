@@ -32,7 +32,7 @@ form.addEventListener("submit", e => {
         .doc(uid)
         .set(userObject)
         .then(() => {
-          window.location.assign("index.html");
+          window.location.assign("../index.html");
         });
       console.log(userObject);
     })

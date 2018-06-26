@@ -15,7 +15,7 @@ form.addEventListener("submit", e => {
       let uid = data.user.uid;
       localStorage.setItem('userUid',uid);
       console.log("User Created with id " + uid);
-      window.location.assign('index.html');
+      window.location.assign('../index.html');
     })
     .catch((err)=>{
         errorEl.innerText = err.message;

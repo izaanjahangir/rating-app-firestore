@@ -1,6 +1,7 @@
 let loaderEl = document.querySelector(".loader");
 let skillList = document.querySelector(".skill-list");
 let skillCategories = [];
+let yourSkills = [];
 let skillForm = document.getElementById("skill-form");
 let userSkillEl = document.getElementById("user-skill");
 let userUid = window.localStorage.getItem("userUid");
@@ -25,39 +26,15 @@ skillForm.addEventListener("submit", e => {
   loaderEl.style.display = "block";
   let userSkill = userSkillEl.value;
   userSkillEl.value = "";
-  let isFound = false;
-  for (let i = 0; i < skillCategories.length; i++) {
-    if (skillCategories[i].toLowerCase() === userSkill.toLowerCase()) {
-      let skill = skillCategories[i].toLowerCase();
-      isFound = true;
-      db.collection("servicesName")
-        .doc(skill)
-        .get()
-        .then(data => {
-          db.collection("servicesName")
-            .doc(skill)
-            .update({ users: data.data().users + 1 });
-        });
-      break;
-    }
-  }
-  if (!isFound) {
-    db.collection("servicesName")
-      .doc(userSkill)
-      .set({ skill: userSkill, users: 1 });
-  }
-  db.collection("services").add({
-    name: userSkill,
-    userUid,
-    ratings: [],
-    avRating: 0
-  });
+  checkSkillList(userSkill);
+  checkUserSkill(userSkill);
 });
 
 function renderUserSkills(change) {
   let skillData = change.doc.data();
   loaderEl.style.display = "none";
   if(change.type === "added"){
+    yourSkills.push(skillData.name);    
     userSkillList.innerHTML += `
       <li class="list-group-item skill-item" class=${skillData.name}>
         <span class="left-content">${skillData.name}</span>
@@ -86,15 +63,16 @@ function renderUserSkills(change) {
 
 function renderSkillCategories(change) {
   loaderEl.style.display = "none";
+  let skillData = change.doc.data();
   if (change.type === "added") {
-    skillCategories.push(change.doc.data().skill);
+    skillCategories.push(skillData.skill);
 
     skillList.innerHTML += `
-        <li class="list-group-item skill-item ${change.doc.data().skill}">
-          <span class="left-content">${change.doc.data().skill}</span>
+        <li class="list-group-item skill-item ${skillData.skill}">
+          <span class="left-content">${skillData.skill}</span>
           <span class="right-content">
               <span class="badge badge-secondary">${
-                change.doc.data().users
+                skillData.users
               }</span>
               <i class="fas fa-angle-right"></i>
           </span>
@@ -104,8 +82,55 @@ function renderSkillCategories(change) {
 
   if (change.type === "modified") {
     let el = skillList.querySelector(
-      `.${change.doc.data().skill} .right-content .badge`
+      `.${skillData.skill} .right-content .badge`
     );
-    el.innerText = change.doc.data().users;
+    el.innerText = skillData.users;
   }
+}
+
+
+function checkUserSkill(userSkill){
+  let isFound = false;
+  for(let i=0; i<yourSkills.length; i++){
+    if (yourSkills[i].toLowerCase() === userSkill.toLowerCase()) {
+      let skill = yourSkills[i].toLowerCase();
+      isFound = true;
+      break;
+    }
+  }
+  if(!isFound){
+    db.collection("services").add({
+      name: userSkill,
+      userUid,
+      ratings: [],
+      avRating: 0
+    });
+  }
+}
+
+function checkSkillList(userSkill){
+  let isFound = false;
+  for (let i = 0; i < skillCategories.length; i++) {
+    if (skillCategories[i].toLowerCase() === userSkill.toLowerCase()) {
+      let skill = skillCategories[i].toLowerCase();
+      isFound = true;
+      db.collection("servicesName")
+        .doc(skill)
+        .get()
+        .then(data => {
+          console.log(skill);
+          
+          db.collection("servicesName")
+            .doc(skill)
+            .update({ users: data.data().users + 1 });
+        });
+      break;
+    }
+  }
+  if (!isFound) {
+    db.collection("servicesName")
+      .doc(userSkill)
+      .set({ skill: userSkill, users: 1 });
+  }
+
 }

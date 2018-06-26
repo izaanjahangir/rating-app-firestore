@@ -17,9 +17,25 @@ function logout() {
     .then(()=> {
       console.log("Sign Out");
       localStorage.removeItem('userUid');
-      window.location.assign('signin.html')
+      window.location.assign('public/signin.html')
     })
     .catch((err)=> {
       console.log(err);
     });
 }
+
+
+// Prevent user to open app if not logged in
+// Prevent user to open signin or signup if logged in
+// if(localStorage.getItem('userUid') !== null){ 
+
+//   if(window.location.pathname === '/public/signin.html' || window.location.pathname === '/public/signup.html'){
+//       window.location.assign('/index.html');
+//   }
+
+// }else{
+  
+// if(window.location.pathname === '/' ||window.location.pathname === '/index.html'){
+//     window.location.assign('/public/signin.html');
+// }  
+// }
