@@ -18,7 +18,7 @@ function renderAllSkills(data) {
   skillData = data.doc.data();
   if(data.type === "added"){
       skillEl.innerHTML += `
-            <li class="list-group-item html skill-item ${skillData.userUid}">
+            <li class="list-group-item html skill-item" id="${skillData.userUid}" onClick="selectSkill(this)">
                 <span class="left-content">${skillData.userUid}</span>
                 <span class="right-content">
                     <span class="stars-outer">
@@ -40,6 +40,14 @@ function renderAllSkills(data) {
         `;
     }
 
-    let starsInnerEl = skillEl.querySelector(`.${skillData.userUid} .stars-inner`);
+    let starsInnerEl = skillEl.querySelector(`#${skillData.userUid} .stars-inner`);
     starsInnerEl.style.width = (skillData.avRating / 5) * 100 + "%";
+}
+
+
+function selectSkill(el){
+    let listArr = skillEl.querySelectorAll('li');
+    listArr.forEach(skill => skill.style.background = 'none' );
+    el.style.background = 'grey';
+    console.log(el.id);
 }

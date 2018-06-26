@@ -47,7 +47,7 @@ if(localStorage.getItem('userUid') !== null){
 
 }else{
   
-if(window.location.pathname === '/' ||window.location.pathname === '/index.html'){
-    window.location.assign('/public/signin.html');
-}  
+  if(window.location.pathname === '/' ||window.location.pathname === '/index.html'){
+      window.location.assign('/public/signin.html');
+  }  
 }
