@@ -105,7 +105,7 @@ function renderSkillCategories(change) {
 
   if (change.type === "modified") {
     let el = skillList.querySelector(
-      `.${skillData.skill} .right-content .badge`
+      `.${skillData.skill.replace(/ /g,'-')} .right-content .badge`
     );
     el.innerText = skillData.users;
   }
