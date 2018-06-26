@@ -65,6 +65,9 @@
   align-items: center;
   cursor: pointer;
 }
+.user-skill-list .skill-item{
+  cursor: auto;
+}
 .left-content {
   flex: 1;
 }

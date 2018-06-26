@@ -42,32 +42,35 @@ skillForm.addEventListener("submit", e => {
 function renderUserSkills(change) {
   let skillData = change.doc.data();
   hideLoader();
+  
   if(change.type === "added"){
-    yourSkills.push(skillData.name);    
+    yourSkills.push(skillData.name);
     userSkillList.innerHTML += `
-      <li class="list-group-item skill-item" class=${skillData.name}>
-        <span class="left-content">${skillData.name}</span>
-        <span class="right-content">
-            <span class="stars-outer">
-                <i class="fas fa-star star-black"></i>
-                <i class="fas fa-star star-black"></i>
-                <i class="fas fa-star star-black"></i>
-                <i class="fas fa-star star-black"></i>
-                <i class="fas fa-star star-black"></i>
-                <span class="stars-inner">
-                    <i class="fas fa-star star-yellow"></i>
-                    <i class="fas fa-star star-yellow"></i>                                
-                    <i class="fas fa-star star-yellow"></i>                                
-                    <i class="fas fa-star star-yellow"></i>                                
-                    <i class="fas fa-star star-yellow"></i>                                                                                                
-                </span>
-            </span>
-        </span>
-      </li>
-    `;
+          <li class="list-group-item html skill-item ${skillData.name}">
+              <span class="left-content">${skillData.name}</span>
+              <span class="right-content">
+                  <span class="stars-outer">
+                      <i class="fas fa-star star-black"></i>
+                      <i class="fas fa-star star-black"></i>
+                      <i class="fas fa-star star-black"></i>
+                      <i class="fas fa-star star-black"></i>
+                      <i class="fas fa-star star-black"></i>
+                      <span class="stars-inner">
+                          <i class="fas fa-star star-yellow"></i>
+                          <i class="fas fa-star star-yellow"></i>
+                          <i class="fas fa-star star-yellow"></i>
+                          <i class="fas fa-star star-yellow"></i>
+                          <i class="fas fa-star star-yellow"></i>
+                      </span>
+                  </span>
+              </span>
+          </li>
+      `;
   }
-  let starsInnerEl = document.querySelector('.stars-inner');
-  starsInnerEl.style.width = (skillData.avRating/5)*100 + '%';
+  
+  let starsInnerEl = userSkillList.querySelector(`.${skillData.name} .stars-inner`);
+  starsInnerEl.style.width = ((skillData.avRating / 5) * 100) + "%";
+
 }
 
 
