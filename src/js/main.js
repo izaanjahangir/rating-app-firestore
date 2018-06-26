@@ -17,12 +17,14 @@ document.addEventListener("DOMContentLoaded", () => {
   showLoader();
   console.log("DOM loaded");
   db.collection("servicesName").onSnapshot(snapshot => {
+    hideLoader();
     snapshot.docChanges().forEach(change => renderSkillCategories(change));
   });
 
   db.collection("services")
     .where("userUid", "==", userUid)
     .onSnapshot(snapshot => {
+      hideLoader();      
       snapshot.docChanges().forEach(change => renderUserSkills(change));
     });
 });
@@ -32,6 +34,11 @@ skillForm.addEventListener("submit", e => {
   showLoader()
   let userSkill = userSkillEl.value;
   userSkillEl.value = "";
+  if(!isNaN( userSkill.slice(0,1) ) ){
+    showModal("Your skill is invalid!");
+    hideLoader();
+    return false;
+  }
   checkUserSkill(userSkill);
 });
 
@@ -46,7 +53,7 @@ function renderUserSkills(change) {
   if(change.type === "added"){
     yourSkills.push(skillData.name);
     userSkillList.innerHTML += `
-          <li class="list-group-item html skill-item ${skillData.name}">
+          <li class="list-group-item html skill-item ${skillData.name.replace(/ /g, "-")}">
               <span class="left-content">${skillData.name}</span>
               <span class="right-content">
                   <span class="stars-outer">
@@ -68,7 +75,7 @@ function renderUserSkills(change) {
       `;
   }
   
-  let starsInnerEl = userSkillList.querySelector(`.${skillData.name} .stars-inner`);
+  let starsInnerEl = userSkillList.querySelector(`.${skillData.name.replace(/ /g, "-")} .stars-inner`);
   starsInnerEl.style.width = ((skillData.avRating / 5) * 100) + "%";
 
 }
@@ -83,7 +90,7 @@ function renderSkillCategories(change) {
     skillCategories.push(skillData.skill);
 
     skillList.innerHTML += `
-        <li class="list-group-item skill-item ${skillData.skill}" onClick="routeToSkills('${skillData.skill}')">
+        <li class="list-group-item skill-item ${skillData.skill.replace(/ /g,'-')}" style="flex-direction: row" onClick="routeToSkills('${skillData.skill}')">
           <span class="left-content">${skillData.skill}</span>
           <span class="right-content">
               <span class="badge badge-secondary">${
@@ -166,21 +173,4 @@ function checkSkillList(userSkill){
 function routeToSkills(skill){
     window.localStorage.setItem('skillName',skill);
     window.location.assign('public/skills.html');
-}
-
-// Show Modal on DOM with transition
-function showModal(text){
-  let modalTextEl = modalEl.querySelector('p');
-  modalTextEl.innerText = text;
-  modalEl.style.display = 'block';
-  setTimeout( () => modalEl.style.opacity = '1',100);
-
-  // Hide Modal from DOM automatically after 3s
-  setTimeout( hideModal, 3000);
-}
-
-// Hide Modal from DOM
-function hideModal(){
-  modalEl.style.display = 'none';
-  modalEl.style.opacity = '0'
 }

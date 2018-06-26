@@ -6,7 +6,7 @@ form.addEventListener("submit", e => {
   e.preventDefault();
 
   loaderEl.style.display = 'block';
-  loaderText.innerText = 'Loggin in please wait...';
+  loaderText.innerText = 'Logging in please wait...';
   
   auth.signInWithEmailAndPassword(emailEl.value, passwordEl.value)
     .then(data => {

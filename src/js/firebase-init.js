@@ -19,7 +19,13 @@ function logout() {
     .then(()=> {
       console.log("Sign Out");
       localStorage.removeItem('userUid');
-      window.location.assign('public/signin.html')
+      
+      window.location.assign('/public/signin.html') // This will only work on server
+      
+      // Use any of these if working locally
+      // window.location.assign('public/signin.html')
+      // window.location.assign('signin.html')    
+    
     })
     .catch((err)=> {
       console.log(err);
@@ -36,6 +42,22 @@ function showLoader(){
   loaderEl.style.display = "block";
 }
 
+// Show Modal on DOM with transition
+function showModal(text){
+  let modalTextEl = modalEl.querySelector('p');
+  modalTextEl.innerText = text;
+  modalEl.style.display = 'block';
+  setTimeout( () => modalEl.style.opacity = '1',100);
+
+  // Hide Modal from DOM automatically after 3s
+  setTimeout( hideModal, 3000);
+}
+
+// Hide Modal from DOM
+function hideModal(){
+  modalEl.style.display = 'none';
+  modalEl.style.opacity = '0'
+}
 
 // Prevent user to open app if not logged in
 // Prevent user to open signin or signup if logged in

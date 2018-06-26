@@ -107,12 +107,15 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 100%;
+  /* width: 100%; */
+  padding: 20px;
+  background: var(--bg-light-red);
   text-align: center;
   display: none;
+  z-index: 1000;
 }
 .loader div {
-  color: rgba(0, 0, 0, 0.7);
+  color: white;
   font-size: 1.1em;
 }
 .loader img {
@@ -137,6 +140,9 @@
 @media (max-width: 767px) {
   #main-container {
     width: 100%;
+  }
+  .skill-item{
+    flex-direction: column;
   }
 }
 
