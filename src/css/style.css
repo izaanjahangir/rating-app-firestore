@@ -11,7 +11,21 @@
   text-align: center;
   font-size: 1.1em;
 }
-
+.custom-modal{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background: var(--bg-light-red);
+  width: 300px;
+  height: 100px;
+  display: none;
+  text-align: center;
+  line-height: 100px;
+  transition: all linear 300ms;
+  z-index: 1000;
+  opacity: 0;
+}
 /*********************************************************/
 
 /******************* Navbar ************************/

@@ -1,3 +1,7 @@
+// All Functions declerations can found in the bottom of this file
+
+
+// DOM Shortcuts
 let loaderEl = document.querySelector(".loader");
 let skillList = document.querySelector(".skill-list");
 let skillCategories = [];
@@ -6,9 +10,12 @@ let skillForm = document.getElementById("skill-form");
 let userSkillEl = document.getElementById("user-skill");
 let userUid = window.localStorage.getItem("userUid");
 let userSkillList = document.querySelector(".user-skill-list");
+let modalEl = document.querySelector('.custom-modal');
+
+
 
 document.addEventListener("DOMContentLoaded", () => {
-  loaderEl.style.display = "block";
+  showLoader();
   console.log("DOM loaded");
   db.collection("servicesName").onSnapshot(snapshot => {
     snapshot.docChanges().forEach(change => renderSkillCategories(change));
@@ -23,16 +30,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
 skillForm.addEventListener("submit", e => {
   e.preventDefault();
-  loaderEl.style.display = "block";
+  showLoader()
   let userSkill = userSkillEl.value;
   userSkillEl.value = "";
-  checkSkillList(userSkill);
   checkUserSkill(userSkill);
 });
 
+
+
+// Render List of user skills on DOM
+// This ran when DOM loads and when a new skill is added
 function renderUserSkills(change) {
   let skillData = change.doc.data();
-  loaderEl.style.display = "none";
+  hideLoader();
   if(change.type === "added"){
     yourSkills.push(skillData.name);    
     userSkillList.innerHTML += `
@@ -61,8 +71,11 @@ function renderUserSkills(change) {
   starsInnerEl.style.width = (skillData.avRating/5)*100 + '%';
 }
 
+
+// Render List of all skills categories on DOM
+// This ran when DOM loads and when a new skill is added
 function renderSkillCategories(change) {
-  loaderEl.style.display = "none";
+  hideLoader();
   let skillData = change.doc.data();
   if (change.type === "added") {
     skillCategories.push(skillData.skill);
@@ -89,25 +102,38 @@ function renderSkillCategories(change) {
 }
 
 
+
+// Check if entered skill already exist with this account
+// If exist does nothing, if not save it on firestore and run checkSkillList() function
 function checkUserSkill(userSkill){
   let isFound = false;
   for(let i=0; i<yourSkills.length; i++){
     if (yourSkills[i].toLowerCase() === userSkill.toLowerCase()) {
       let skill = yourSkills[i].toLowerCase();
       isFound = true;
+      console.log("Found");
+      hideLoader();
+      showModal("You already have this skill");
       break;
     }
   }
   if(!isFound){
+    console.log("Not Found");
+    
     db.collection("services").add({
       name: userSkill,
       userUid,
       ratings: [],
       avRating: 0
     });
+    checkSkillList(userSkill);
   }
 }
 
+
+// Check if entered skill already exist on firestore
+// If exist increase users by 1
+// If not create anothing document on firestore with initual 1 user
 function checkSkillList(userSkill){
   let isFound = false;
   for (let i = 0; i < skillCategories.length; i++) {
@@ -133,4 +159,33 @@ function checkSkillList(userSkill){
       .set({ skill: userSkill, users: 1 });
   }
 
+}
+
+
+// Hide the loader from DOM
+function hideLoader(){
+  loaderEl.style.display = "none";
+}
+
+// Show the loader on DOM
+function showLoader(){
+  loaderEl.style.display = "block";
+}
+
+
+// Show Modal on DOM with transition
+function showModal(text){
+  let modalTextEl = modalEl.querySelector('p');
+  modalTextEl.innerText = text;
+  modalEl.style.display = 'block';
+  setTimeout( () => modalEl.style.opacity = '1',100);
+
+  // Hide Modal from DOM automatically after 3s
+  setTimeout( hideModal, 3000);
+}
+
+// Hide Modal from DOM
+function hideModal(){
+  modalEl.style.display = 'none';
+  modalEl.style.opacity = '0'
 }
