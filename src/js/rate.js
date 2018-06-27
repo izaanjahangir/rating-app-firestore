@@ -66,6 +66,10 @@ function addRating() {
     showModal("Please Write something");        
     return false;
   }
+  if(userRateEl.value > 5 || userRateEl.value < 0){
+    showModal("Please rate between 0 - 5");        
+    return false;
+  }
   showLoader();
   let userRate = parseFloat(userRateEl.value);
   selectedId = selectedId.slice(1);
