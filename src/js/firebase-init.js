@@ -1,11 +1,11 @@
 // Initialize Firebase
 var config = {
-  apiKey: "AIzaSyCogkN2O23QaN1YLQD01MISy2COFbsLoYQ",
-  authDomain: "izaan-assignment3.firebaseapp.com",
-  databaseURL: "https://izaan-assignment3.firebaseio.com",
-  projectId: "izaan-assignment3",
-  storageBucket: "izaan-assignment3.appspot.com",
-  messagingSenderId: "741576388039"
+  apiKey: "AIzaSyBOucyfs1zFf3k2fvGBHTysyaT5ysKsrw4",
+  authDomain: "izaan-rating-app.firebaseapp.com",
+  projectId: "izaan-rating-app",
+  storageBucket: "izaan-rating-app.appspot.com",
+  messagingSenderId: "12559725043",
+  appId: "1:12559725043:web:c0c7aa712da9ffe8bc2286"
 };
 firebase.initializeApp(config);
 
